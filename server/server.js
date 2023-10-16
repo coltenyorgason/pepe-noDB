@@ -22,6 +22,9 @@ import handlerFunctions from "./controller.js";
 
 //Routes
 app.get('/pepe', handlerFunctions.getPepe)
+app.post('/addPepe', handlerFunctions.addPepe)
+app.delete('/deletePepe/:id', handlerFunctions.deletePepe)
+app.put('/editPepe/:id', handlerFunctions.editPepe)
 
 ViteExpress.listen(app, 3360, () =>
   console.log(`Pepe Server Request, Report to http://localhost:3360/`)
