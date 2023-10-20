@@ -1,13 +1,13 @@
+import { PEPE_DATA } from "../server/data-mockup";  // Array of objects in its own seperate file
 import "./App.css";
-import Pepe from "./components/pepe";
+import PepeCrud from "./components/pepecrud";
 
-function App({ firstPepe }) {
-  
-
-  return;
-  <div>
-    <Pepe />
-  </div>;
+function App() {
+  return (
+    <>
+      <PepeCrud initialPepeData={PEPE_DATA} />
+    </>
+  );
 }
 
 export default App;

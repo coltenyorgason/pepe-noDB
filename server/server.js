@@ -1,31 +1,30 @@
 import express from "express";
 import ViteExpress from "vite-express";
 
+import handlerFunctions from "./controllers.js";
+
+// Variable for .listen() Method
+const port = 8000;
 const app = express();
 
+// Middlware
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static("public"));
 app.use(express.json());
 
-const PEPE_DATA = [
-  {
-    id: 0,
-    name: "Pepe Photo",
-    URL: "https://tenor.com/view/pepe-on-goose-goose-pepe-goose-goose-frog-frog-and-goose-gif-8393333380471030616",
-  },
-  {
-    id: 1,
-    name: "Pepe Happy ",
-    URL: "https://media.tenor.com/E6idhcXRgBcAAAAM/peppo-pepe.gif",
-  },
-];
+// =====Routes=====
+// Gets the army of pepes
+app.get("/api/getPepe", handlerFunctions.getPepe);
 
-import handlerFunctions from "./controller.js";
+// Creates a new Pepe
+app.post("/pepe/addPepe", handlerFunctions.createPepe);
 
-//Routes
-app.get('/pepe', handlerFunctions.getPepe)
-app.post('/addPepe', handlerFunctions.addPepe)
-app.delete('/deletePepe/:id', handlerFunctions.deletePepe)
-app.put('/editPepe/:id', handlerFunctions.editPepe)
+// Delete Pepe
+app.delete("/pepe/deletePepe/:id", handlerFunctions.deletePepe);
 
-ViteExpress.listen(app, 3360, () =>
-  console.log(`Pepe Server Request, Report to http://localhost:3360/`)
+// Edits Pepe
+app.put("/editPepe/:id", handlerFunctions.editPepe);
+
+ViteExpress.listen(app, port, () =>
+  console.log(`Pepe lurkin, Check http://localhost:${port}/`)
 );
